@@ -12,6 +12,7 @@ import { FatText } from "../shared";
 import { gql, useMutation } from "@apollo/client";
 import Comments from "./Comments";
 import Comment from "./Comment";
+import { Link } from "react-router-dom";
 
 const SPhoto = styled.div`
   background-color: white;
@@ -98,8 +99,12 @@ const Photo = ({
   return (
     <SPhoto>
       <PhotoHeader>
-        <Avatar url={user.avatar} lg={true} />
-        <FatText>{user.username}</FatText>
+        <Link to={`/user/${user.username}`}>
+          <Avatar url={user.avatar} lg={true} />
+        </Link>
+        <Link to={`/user/${user.username}`}>
+          <FatText>{user.username}</FatText>
+        </Link>
       </PhotoHeader>
       <PhotoImg src={file} />
       <PhotoData>

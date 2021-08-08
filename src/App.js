@@ -5,9 +5,11 @@ import { ThemeProvider } from "styled-components";
 import { client, darkModeVar, isLoggedInVar } from "./apollo";
 import Layout from "./components/Layout";
 import routes from "./routes";
+import Hashtag from "./screens/Hashtag";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import NotFound from "./screens/NotFound";
+import Profile from "./screens/Profile";
 import SignUp from "./screens/SignUp";
 import { darkTheme, GloabalStyles, lightTheme } from "./styles";
 
@@ -21,18 +23,16 @@ function App() {
           <GloabalStyles />
           <Router>
             <Switch>
-              <Route path={routes.home} exact>
-                {isLoggedIn ? (
-                  <Layout>
-                    <Home />
-                  </Layout>
-                ) : (
-                  <Login />
-                )}
-              </Route>
-              {!isLoggedIn ? (
-                <Route path={routes.signUp} component={SignUp} exact />
-              ) : null}
+              <Layout>
+                <Route path={routes.home} exact>
+                  {isLoggedIn ? <Home /> : <Login />}
+                </Route>
+                {!isLoggedIn ? (
+                  <Route path={routes.signUp} component={SignUp} exact />
+                ) : null}
+                <Route path={routes.profile} component={Profile} />
+                <Route path={routes.hashtag} component={Hashtag} />
+              </Layout>
               <Route>
                 <NotFound />
               </Route>

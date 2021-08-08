@@ -23,6 +23,7 @@ const CommentInput = styled.input`
 const CREATE_COMMENT = gql`
   mutation createComment($photoId: Int!, $payload: String!) {
     createComment(photoId: $photoId, payload: $payload) {
+      id
       ok
       error
     }

@@ -1,4 +1,6 @@
+import { useReactiveVar } from "@apollo/client";
 import styled from "styled-components";
+import { isLoggedInVar } from "../apollo";
 import Header from "./Header";
 
 const Content = styled.main`
@@ -8,9 +10,10 @@ const Content = styled.main`
 `;
 
 const Layout = ({ children }) => {
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
   return (
     <>
-      <Header />
+      {isLoggedIn && <Header />}
       <Content>{children}</Content>
     </>
   );

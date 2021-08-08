@@ -4,35 +4,27 @@ import styled from "styled-components";
 import { logUserOut } from "../apollo";
 import PageTitle from "../components/PageTitle";
 import Photo from "../components/Photo/Photo";
+import { COMMNET_FRAGMENT, PHOTO_FRAGMENT } from "../fragments";
 
 const FEED_QUERY = gql`
   query seeFeed {
     seeFeed {
-      id
+      ...PhotoFragment
       user {
         id
         username
         avatar
       }
-      file
       caption
-      likeCount
-      commentsCount
       comments {
-        id
-        payload
-        isMine
-        user {
-          id
-          username
-          avatar
-        }
+        ...CommentFragment
       }
       isMine
-      isLiked
       createdAt
     }
   }
+  ${PHOTO_FRAGMENT}
+  ${COMMNET_FRAGMENT}
 `;
 const Photos = styled.div`
   max-width: 614px;

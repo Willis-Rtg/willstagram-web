@@ -52,7 +52,9 @@ const Comment = ({ photoId, id, author, payload, isMine }) => {
   });
   return (
     <SComment>
-      <FatText>{author}</FatText>
+      <Link to={`/user/${author}`}>
+        <FatText>{author}</FatText>
+      </Link>{" "}
       <span>
         {payload.split(" ").map((word, index) => {
           const hash = /#[\w]+/g.test(word);
